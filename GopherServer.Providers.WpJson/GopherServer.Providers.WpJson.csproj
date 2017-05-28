@@ -74,7 +74,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GopherServer.Providers\GopherServer.Core.csproj">
+    <ProjectReference Include="..\GopherServer.Core\GopherServer.Core.csproj">
       <Project>{ac231f71-1aab-4a7b-bb88-a1a17b5dd5c7}</Project>
       <Name>GopherServer.Core</Name>
     </ProjectReference>

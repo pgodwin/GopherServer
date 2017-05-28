@@ -1,6 +1,6 @@
-﻿using GopherServer.Core.GopherResults;
+﻿using GopherServer.Core.Results;
 using GopherServer.Core.Helpers;
-using GopherServer.Providers.Helpers;
+using GopherServer.Core.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WordPressRestApi.Models;
 
-namespace GopherServer.Providers.WpJson.Extensions
+namespace GopherServer.Core.WpJson.Extensions
 {
     public static class WordPressExtensions
     {

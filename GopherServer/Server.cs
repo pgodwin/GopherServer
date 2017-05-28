@@ -1,8 +1,8 @@
 ﻿using GopherServer.Core.Configuration;
-using GopherServer.Core.GopherResults;
+using GopherServer.Core.Results;
 using GopherServer.Core.Providers;
-using GopherServer.Providers;
-using GopherServer.Providers.WpJson;
+using GopherServer.Core;
+using GopherServer.Core.WpJson;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -168,11 +168,13 @@ namespace GopherServer.Server
                         }
                     }
 
-                    using (var stream = new MemoryStream())
-                    {
-                        result.WriteResult(stream);
-                        Send(handler, stream.ToArray());
-                    }
+                    //using (var stream = new MemoryStream())
+                    //{
+                    //    result.WriteResult(stream);
+                    //    Send(handler, stream.ToArray());
+                    //}
+
+                    WriteResult(handler, result);
                     
                     
                 }   
@@ -198,12 +200,21 @@ namespace GopherServer.Server
 
         private static void Send(Socket handler, byte[] data)
         {
-            
-
             // Begin sending the data to the remote device.  
             handler.BeginSend(data, 0, data.Length, 0,
                 new AsyncCallback(SendCallback), handler);
 
+        }
+
+        private static void WriteResult(Socket handler, BaseResult result)
+        {
+            
+            using (var netStream = new NetworkStream(handler))
+            {
+                result.WriteResult(netStream);
+            }
+            handler.Shutdown(SocketShutdown.Both);
+            handler.Close();
         }
 
         private static void SendCallback(IAsyncResult ar)

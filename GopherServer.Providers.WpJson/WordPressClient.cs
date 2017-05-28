@@ -1,7 +1,6 @@
 ﻿using GopherServer.Core.Helpers;
-using GopherServer.Core.GopherResults;
-using GopherServer.Providers.Helpers;
-using GopherServer.Providers.WpJson.Extensions;
+using GopherServer.Core.Results;
+using GopherServer.Core.WpJson.Extensions;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ using WordPressRestApi;
 using WordPressRestApi.Models;
 using WordPressRestApi.QueryModel;
 
-namespace GopherServer.Providers.WpJson
+namespace GopherServer.Core.WpJson
 {
     public class WordPressClient
     {

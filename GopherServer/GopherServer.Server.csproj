@@ -53,11 +53,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GopherServer.Providers.MacintoshGarden\GopherServer.Providers.MacintoshGarden.csproj">
+      <Project>{cd67eecb-5262-4b8e-8a0a-05aba2e20c6b}</Project>
+      <Name>GopherServer.Providers.MacintoshGarden</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GopherServer.Providers.Rss\GopherServer.Providers.Rss.csproj">
+      <Project>{e6a1b43d-a316-4b41-a730-5dabff9c89a2}</Project>
+      <Name>GopherServer.Providers.Rss</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GopherServer.Providers.WpJson\GopherServer.Providers.WpJson.csproj">
       <Project>{875d31fd-0189-4c17-91fb-a70ae853bea3}</Project>
       <Name>GopherServer.Providers.WpJson</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GopherServer.Providers\GopherServer.Core.csproj">
+    <ProjectReference Include="..\GopherServer.Core\GopherServer.Core.csproj">
       <Project>{ac231f71-1aab-4a7b-bb88-a1a17b5dd5c7}</Project>
       <Name>GopherServer.Core</Name>
     </ProjectReference>

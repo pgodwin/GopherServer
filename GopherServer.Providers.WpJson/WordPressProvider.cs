@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GopherServer.Core.GopherResults;
+using GopherServer.Core.Results;
 using System.Text.RegularExpressions;
 using GopherServer.Core.Providers;
-using GopherServer.Providers.Routes;
 using System.Configuration;
+using GopherServer.Core.Routes;
 
-namespace GopherServer.Providers.WpJson
+namespace GopherServer.Core.WpJson
 {
     /// <summary>
     /// Provides a Gopher Provider to the Wordpress REST API
@@ -47,9 +47,6 @@ namespace GopherServer.Providers.WpJson
                 // Get Post as Text
                 new TypedRoute<int>("Posts", @"\/posts\/text\/(\d+)", client.GetPostText),
 
-                // Get Image
-                new TypedRoute<string>("Gif", @"\/gif\/(.+)", client.GetGif),
-
                 // Categories List
                 new Route("Categories", @"\/categories\/", client.GetCategories),
 
@@ -59,11 +56,18 @@ namespace GopherServer.Providers.WpJson
                 // Search
                 new TypedRoute<string>("Search", @"\/search\/*\t(.+)", client.Search),
 
+
+                // Get Image
+                //new TypedRoute<string>("Gif", @"\/gif\/(.+)", client.GetGif),
+                PrebuiltRoutes.GifRoute(),
+
                 // External Link
-                new TypedRoute<string>("Url", @"URL:(.+)", client.Redirect),
+                //new TypedRoute<string>("Url", @"URL:(.+)", client.Redirect),
+                PrebuiltRoutes.UrlResult(),
 
                 // Proxy Link
-                new TypedRoute<string>("Proxy", @"\/proxy\/(.+)", client.ProxyPage),
+                //new TypedRoute<string>("Proxy", @"\/proxy\/(.+)", client.ProxyPage),
+                PrebuiltRoutes.HtmlProxy(),
 
             };
         }

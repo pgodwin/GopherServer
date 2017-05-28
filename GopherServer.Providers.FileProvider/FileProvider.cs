@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GopherServer.Core.GopherResults;
+using GopherServer.Core.Results;
 using GopherServer.Core.Providers;
 
-namespace GopherServer.Providers
+namespace GopherServer.Core
 {
     public class FileProvider : ServerProviderBase
     {
