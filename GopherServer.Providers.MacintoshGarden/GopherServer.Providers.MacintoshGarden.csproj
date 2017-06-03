@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\AngleSharpExtensions.cs" />
     <Compile Include="MacintoshGardenProvider.cs" />
     <Compile Include="MacGardenController.cs" />
     <Compile Include="Models\SearchResult.cs" />

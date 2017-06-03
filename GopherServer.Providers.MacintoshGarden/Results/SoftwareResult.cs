@@ -18,11 +18,11 @@ namespace GopherServer.Providers.MacintoshGarden.Results
             this.Items.Add(new DirectoryItem(new string('*', item.Title.Length + 4)));
 
 
-            
-            foreach (var screenshot in item.Screenshots)
-            {
-                this.Items.Add(new DirectoryItem(ItemType.GIF, "Screenshot", "GIF:" + screenshot));
-            }
+            if (item.Screenshots != null)
+                foreach (var screenshot in item.Screenshots)
+                {
+                    this.Items.Add(new DirectoryItem(ItemType.GIF, "Screenshot", "GIF:" + screenshot));
+                }
 
 
             this.Items.AddRange(item.Description.WrapToDirectoryItems());
