@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using GopherServer.Core.Results;
 using GopherServer.Core.Providers;
 
-namespace GopherServer.Core
+namespace GopherServer.Providers.FileProvider
 {
     public class FileProvider : ServerProviderBase
     {
@@ -17,12 +17,41 @@ namespace GopherServer.Core
 
         public override BaseResult GetResult(string selector)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(selector))
+                return new DirectoryListingResult(BaseDirectory, BaseDirectory);
+
+            if (selector.Contains(".."))
+                return new ErrorResult("Invalid Path");
+
+            selector = selector.TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+            var path = Path.Combine(BaseDirectory, selector);
+
+            var indexPath = Path.Combine(path, "index.gopher");
+
+            if (File.Exists(indexPath))
+                return new TextResult(File.ReadAllLines(indexPath).ToList());
+
+
+            if (File.Exists(path))
+            {
+                return new FileResult(path, BaseDirectory);
+            }
+
+            if (Directory.Exists(path))
+                return new DirectoryListingResult(path, BaseDirectory);
+
+            return new ErrorResult("Invalid Path");
+
         }
 
         public override void Init()
         {
-            throw new NotImplementedException();
+            this.BaseDirectory = "J:\\GopherTest";
         }
+
+        public string BaseDirectory { get; set; }
+
+        
     }
 }

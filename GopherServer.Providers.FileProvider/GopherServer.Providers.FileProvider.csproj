@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Results\FileResult.cs" />
+    <Compile Include="Results\DirectoryInfoResult.cs" />
     <Compile Include="FileProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
