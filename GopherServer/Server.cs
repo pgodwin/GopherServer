@@ -151,6 +151,13 @@ namespace GopherServer.Server
                     // Trim the trailng CRLF
                     selector = selector.TrimEnd('\r', '\n');
 
+                    // a whole bunch of legacy clients seem to be doing \r\n.
+                    // might strip that too
+                    selector = selector.TrimStart('\r', '\n');
+
+                    if (selector == ".")
+                        selector = "";
+
                     // Tell the provider to return a result for the selector
                     var result  = provider.GetResult(selector);
 
