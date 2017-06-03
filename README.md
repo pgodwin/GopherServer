@@ -72,6 +72,9 @@ I've successfully tested this server with the following clients:
  - Digger Dwarf (Win32) - http://slugmax.tx0.org/gopher.viste.fr/projects/ddwarf/
 
 ## Classic Macintosh
+ - Netscape 3 (Almost certainly early and later versions)
+   Netscape is great as it supports images out of the box and already has good mime-mappings. 
+   Screenshot - http://imgur.com/oSTpWSI
  - GopherApp (Macintosh System 6+) - http://iubio.bio.indiana.edu/soft/util/gopher/gopherapp/ 
    You need to edit one of bookmark files in BBEdit or similar. It doesn't seem to support INFO types, 
    but SOURCE (MacApp Pascal i think) is available! 
@@ -80,6 +83,7 @@ I've successfully tested this server with the following clients:
    This was cross-platform, but I'm not sure if source was ever released. Available also for Win16, Win32, SGI Mips and Sparc
  - TurboGopher (System 6+)
    I had some issues with this one. It would download the initial directory, but wouldn't connect again past there. 
+   Screenshot - http://i.imgur.com/obYrUcZ.png
 
 There's lots of clients out there, if you've had any luck with any of them let me know!
 
