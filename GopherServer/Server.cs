@@ -161,7 +161,8 @@ namespace GopherServer.Server
                     // Tell the provider to return a result for the selector
                     var result  = provider.GetResult(selector);
 
-                    // This is a bit of a hack - I need a beeter 
+                    // This is a bit of a hack - I need a better 
+                    // way of doing this (push it back to the provider I think)
                     if (result is DirectoryResult)
                     {
                         var dir = result as DirectoryResult;
@@ -215,13 +216,31 @@ namespace GopherServer.Server
 
         private static void WriteResult(Socket handler, BaseResult result)
         {
-            
-            using (var netStream = new NetworkStream(handler))
+
+            try
             {
-                result.WriteResult(netStream);
+                using (var netStream = new NetworkStream(handler))
+                {
+                    result.WriteResult(netStream);
+                }
+
             }
-            handler.Shutdown(SocketShutdown.Both);
-            handler.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error writing result. {0}", ex);
+            }
+            finally
+            {
+                try
+                {
+                    handler.Shutdown(SocketShutdown.Both);
+                    handler.Close();
+                }
+                catch (Exception handlerException)
+                {
+                    Console.WriteLine("Error attempting to close the handler: {0}", handlerException);
+                }
+            }
         }
 
         private static void SendCallback(IAsyncResult ar)
