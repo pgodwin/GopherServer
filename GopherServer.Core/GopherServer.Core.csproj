@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Configuration\ExtensionMappingConfigSection.cs" />
     <Compile Include="Configuration\ServerSettings.cs" />
+    <Compile Include="Helpers\FileTypeHelpers.cs" />
     <Compile Include="Results\ErrorResult.cs" />
     <Compile Include="Results\GifResult.cs" />
     <Compile Include="Results\HtmlResult.cs" />

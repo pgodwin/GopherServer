@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,27 @@ namespace GopherServer.Core.Configuration
 {
     public static class ServerSettings
     {
+        private static ExtensionMappingCollection extensionMappings;
+
+        public static ExtensionMappingCollection FileTypeMappings
+        {
+            get
+            {
+                if (extensionMappings != null)
+                    return extensionMappings;
+   
+                var config =
+                          ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+                var section = config.GetSection("gopherFileMappings") as ExtensionMappingConfigSection;
+
+                extensionMappings = section.ExtensionMappings;
+
+                return extensionMappings;
+                
+            }
+        }
+
         public static string BoundIP
         {
             get { return ConfigurationManager.AppSettings["boundIP"]; }
