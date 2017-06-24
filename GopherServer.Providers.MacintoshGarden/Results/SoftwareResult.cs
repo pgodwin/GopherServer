@@ -1,4 +1,5 @@
 ﻿using GopherServer.Core.Helpers;
+using GopherServer.Core.Models;
 using GopherServer.Core.Results;
 using GopherServer.Providers.MacintoshGarden.Models;
 using System;
@@ -38,7 +39,7 @@ namespace GopherServer.Providers.MacintoshGarden.Results
                 foreach (var link in download.Links)
                 {
                     this.Items.Add(new DirectoryItem(link.Text + ":"));
-                    this.Items.Add(new DirectoryItem(ItemType.BINHEX, download.Title, "BIN:" + link.Url));
+                    this.Items.Add(new DirectoryItem(Core.Helpers.FileTypeHelpers.GetItemTypeFromFileName(link.Url), download.Title, "BIN:" + link.Url));
                 }
                 this.Items.Add(new DirectoryItem("Filesize: " + download.Size));
                 this.Items.Add(new DirectoryItem("OS:       " + download.Os));

@@ -1,4 +1,5 @@
 ﻿using GopherServer.Core.Helpers;
+using GopherServer.Core.Models;
 using GopherServer.Core.Results;
 using GopherServer.Core.WpJson.Extensions;
 using HtmlAgilityPack;

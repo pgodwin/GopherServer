@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WordPressRestApi.Models;
+using GopherServer.Core.Models;
 
 namespace GopherServer.Core.WpJson.Extensions
 {

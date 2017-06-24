@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System;
+using GopherServer.Core.Models;
 
 namespace GopherServer.Providers.FileProvider
 {
@@ -28,14 +29,13 @@ namespace GopherServer.Providers.FileProvider
             this.Items.AddRange(files.Select(f =>
                 new DirectoryItem(this.GetItemType(f.FullName), f.Name, f.FullName.Replace(baseDirectory, string.Empty))));
 
-
-
         }
 
         private ItemType GetItemType(string fullName)
         {
             // TODO: Handle mapping these
-            return ItemType.FILE;
+            //return ItemType.FILE;
+            return Core.Helpers.FileTypeHelpers.GetItemTypeFromFileName(fullName);
         }
     }
 }

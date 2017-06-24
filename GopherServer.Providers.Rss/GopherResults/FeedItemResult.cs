@@ -6,6 +6,7 @@ using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
+using GopherServer.Core.Models;
 
 namespace GopherServer.Core.Rss.GopherResults
 {

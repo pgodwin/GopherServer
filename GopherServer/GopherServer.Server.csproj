@@ -53,6 +53,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GopherServer.Providers.FileProvider\GopherServer.Providers.FileProvider.csproj">
+      <Project>{42ed6433-c91a-449d-9cef-bf3c7f006ff0}</Project>
+      <Name>GopherServer.Providers.FileProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GopherServer.Providers.MacintoshGarden\GopherServer.Providers.MacintoshGarden.csproj">
       <Project>{cd67eecb-5262-4b8e-8a0a-05aba2e20c6b}</Project>
       <Name>GopherServer.Providers.MacintoshGarden</Name>

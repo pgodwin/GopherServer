@@ -1,4 +1,5 @@
 ﻿using GopherServer.Core.Helpers;
+using GopherServer.Core.Models;
 using GopherServer.Core.Results;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace GopherServer.Providers.MacintoshGarden.Results
             this.Items.Add(new DirectoryItem("Search Results"));
             this.Items.Add(new DirectoryItem("--------------"));
 
-            this.Items.Add(new DirectoryItem(ItemType.INDEXSEARCH, "New Search", "/search/"));
+            this.Items.Add(new DirectoryItem(Core.Models.ItemType.INDEXSEARCH, "New Search", "/search/"));
 
             foreach (var result in results.Results)
             {

@@ -1,11 +1,11 @@
 ﻿using GopherServer.Core.Results;
 using GopherServer.Core.Helpers;
-using GopherServer.Core.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GopherServer.Core.Models;
 
 namespace GopherServer.Core.Rss.GopherResults
 {

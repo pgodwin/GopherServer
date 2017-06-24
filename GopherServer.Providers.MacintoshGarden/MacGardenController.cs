@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GopherServer.Providers.MacintoshGarden.Results;
 using GopherServer.Providers.MacintoshGarden.Models;
 using System.Net;
+using GopherServer.Core.Models;
 
 namespace GopherServer.Providers.MacintoshGarden
 {
