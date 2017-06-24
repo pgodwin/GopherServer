@@ -14,7 +14,7 @@ namespace GopherServer.Core.Results
     {
         public GifResult(string url)
         {
-            this.ItemType = ItemType.GIF;
+            this.ItemType = Models.ItemType.GIF;
             this.ResultBytes = ImageToGif.ConvertImageToGif(url);
         }
     }

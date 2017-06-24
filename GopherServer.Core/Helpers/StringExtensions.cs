@@ -1,4 +1,5 @@
-﻿using GopherServer.Core.Results;
+﻿using GopherServer.Core.Models;
+using GopherServer.Core.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GopherServer.Core.Results
+namespace GopherServer.Core.Models
 {
     public class ItemType
     {
@@ -56,8 +57,7 @@ namespace GopherServer.Core.Results
         {
             _typeDictionary = new Dictionary<char, ItemType>();
             var type = typeof(ItemType);
-            var fields = type.GetFields(System.Reflection.BindingFlags.Static)
-                             .Where(t => t.FieldType == typeof(ItemType));
+            var fields = type.GetFields(BindingFlags.Public | BindingFlags.Static).Where(f=>f.FieldType == typeof(ItemType));
 
             foreach (var p in fields)
             {

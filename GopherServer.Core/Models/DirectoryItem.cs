@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GopherServer.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GopherServer.Core.Results
+namespace GopherServer.Core.Models
 {
     public class DirectoryItem 
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GopherServer.Core.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -36,6 +37,7 @@ namespace GopherServer.Core.Results
                 streamWriter.WriteLine(".");
                 // Server should close connection after this point.
             }
+            itemsString = null;
         }
 
 
