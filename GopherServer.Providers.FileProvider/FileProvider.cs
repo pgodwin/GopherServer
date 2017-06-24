@@ -47,7 +47,7 @@ namespace GopherServer.Providers.FileProvider
 
         public override void Init()
         {
-            this.BaseDirectory = "J:\\GopherTest";
+            this.BaseDirectory = Settings.RootDirectory;
         }
 
         public string BaseDirectory { get; set; }
