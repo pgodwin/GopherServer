@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GopherServer.Core.Results;
 using GopherServer.Core.Providers;
+using GopherServer.Core.Results;
 
 namespace GopherServer.Providers.FileProvider
 {
     public class FileProvider : ServerProviderBase
     {
         public FileProvider(string hostname, int port) : base(hostname, port)
-        {
-        }
+        { }
+
+        public string BaseDirectory { get; set; }
+
+        public override void Init() => this.BaseDirectory = Settings.RootDirectory; 
 
         public override BaseResult GetResult(string selector)
         {
@@ -32,7 +31,6 @@ namespace GopherServer.Providers.FileProvider
             if (File.Exists(indexPath))
                 return new TextResult(File.ReadAllLines(indexPath).ToList());
 
-
             if (File.Exists(path))
             {
                 return new FileResult(path, BaseDirectory);
@@ -42,16 +40,6 @@ namespace GopherServer.Providers.FileProvider
                 return new DirectoryListingResult(path, BaseDirectory);
 
             return new ErrorResult("Invalid Path");
-
-        }
-
-        public override void Init()
-        {
-            this.BaseDirectory = Settings.RootDirectory;
-        }
-
-        public string BaseDirectory { get; set; }
-
-        
+        }       
     }
 }

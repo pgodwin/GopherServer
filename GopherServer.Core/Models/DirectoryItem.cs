@@ -1,18 +1,13 @@
-﻿using GopherServer.Core.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace GopherServer.Core.Models
 {
     public class DirectoryItem 
     {
         public DirectoryItem()
-        {
-
-        }
+        { }
 
         /// <summary>
         /// Add an info item
@@ -92,8 +87,8 @@ namespace GopherServer.Core.Models
             {
                 sb.Append(this.Description);
             }
-            return sb.ToString();
 
+            return sb.ToString();
         }
 
         public static DirectoryItem Parse(string line)

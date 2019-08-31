@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GopherServer.Core\GopherServer.Core.csproj" />
+    <ProjectReference Include="..\GopherServer.Providers.FileProvider\GopherServer.Providers.FileProvider.csproj" />
+    <ProjectReference Include="..\GopherServer.Providers.MacintoshGarden\GopherServer.Providers.MacintoshGarden.csproj" />
+    <ProjectReference Include="..\GopherServer.Providers.Rss\GopherServer.Providers.Rss.csproj" />
+    <ProjectReference Include="..\GopherServer.Providers.WpJson\GopherServer.Providers.WpJson.csproj" />
+  </ItemGroup>
+
+</Project>

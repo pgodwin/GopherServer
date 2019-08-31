@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GopherServer.Core.Results
+﻿namespace GopherServer.Core.Results
 {
     /// <summary>
     /// Returns a HTML page with a link to the request url

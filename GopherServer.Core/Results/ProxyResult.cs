@@ -1,11 +1,5 @@
-﻿using GopherServer.Core.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.IO;
-using System.Net;
 
 namespace GopherServer.Core.Results
 {
@@ -20,7 +14,6 @@ namespace GopherServer.Core.Results
         {
             this.Url = url;
             this.Referrer = referrer;
-
         }
 
         public string Referrer { get; private set; }
@@ -41,8 +34,8 @@ namespace GopherServer.Core.Results
             catch (System.Net.WebException WebEx)
             {
                 new ErrorResult("Error: " + WebEx.ToString()).WriteResult(stream);
-
             }
+
             if (ServerResponse != null)
             {
                 using (var instream = ServerResponse.GetResponseStream())
@@ -62,8 +55,7 @@ namespace GopherServer.Core.Results
                         instream.Close();
                     }
                 }
-            }
-           
+            }           
         }
     }
 }

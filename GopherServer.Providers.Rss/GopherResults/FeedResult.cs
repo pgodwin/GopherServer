@@ -37,12 +37,12 @@ namespace GopherServer.Core.Rss.GopherResults
                     this.Items.Add(new DirectoryItem("---"));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 this.Items.Add(new DirectoryItem("Error Processing Feed."));
             }
-            this.Items.Add(new DirectoryItem("Return to Feed List", string.Format("/feeds/{0}/", nickname)));
 
+            this.Items.Add(new DirectoryItem("Return to Feed List", string.Format("/feeds/{0}/", nickname)));
         }
     }
 }

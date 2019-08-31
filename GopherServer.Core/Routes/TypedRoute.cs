@@ -1,9 +1,5 @@
-﻿using GopherServer.Core.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using GopherServer.Core.Results;
 
 namespace GopherServer.Core.Routes
 {
@@ -18,18 +14,16 @@ namespace GopherServer.Core.Routes
             this.Name = name;
             this.RegexString = pattern;
             this.TypedAction = action;
-
             this.BuildRegex(pattern);
         }
 
+        public Func<T, BaseResult> TypedAction { get; set; }
 
         public T GetValue(string selector)
         {
             var v = Regex.Match(selector).Groups[1].Value;
             return (T)Convert.ChangeType(v, typeof(T));
         }
-
-        public Func<T, BaseResult> TypedAction { get; set; }
 
         public override BaseResult Execute(string selector)
         {

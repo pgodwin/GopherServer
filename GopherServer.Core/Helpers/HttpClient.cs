@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Http;
 
 namespace GopherServer.Core.Helpers
 {
@@ -11,15 +6,9 @@ namespace GopherServer.Core.Helpers
     {
         private static HttpClient client = new HttpClient();
 
-        public static byte[] DownloadFile(string url)
-        {
-            return client.GetByteArrayAsync(url).Result;
-        }
+        public static byte[] DownloadFile(string url) => client.GetByteArrayAsync(url).Result;
 
-        public static string GetUrl(string url)
-        {
+        public static string GetUrl(string url) => System.Text.Encoding.UTF8.GetString(client.GetByteArrayAsync(url).Result);
             // return client.GetStringAsync(url).Result;
-            return System.Text.Encoding.UTF8.GetString(client.GetByteArrayAsync(url).Result);
-        }
     }
 }

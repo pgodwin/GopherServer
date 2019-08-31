@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
-using System.IO;
 using System.Drawing.Imaging;
+using System.IO;
 
 namespace GopherServer.Core.Helpers
 {
@@ -68,21 +64,15 @@ namespace GopherServer.Core.Helpers
             Bitmap original;
             if (Configuration.ServerSettings.ResizeImages)
             {
-                original = new Bitmap(image,
-                    ResizeKeepAspect(image.Size,
-                                     Configuration.ServerSettings.MaximumWidth.GetValueOrDefault(512),
-                                     Configuration.ServerSettings.MaximumHeight.GetValueOrDefault(512)));
+                original = new Bitmap(image, ResizeKeepAspect(image.Size,
+                    Configuration.ServerSettings.MaximumWidth.GetValueOrDefault(512),
+                    Configuration.ServerSettings.MaximumHeight.GetValueOrDefault(512)));
 
                 if (Configuration.ServerSettings.ResampleImages == false)
                     original.Save(stream, ImageFormat.Gif);
             }
+            else original = new Bitmap(image);
 
-
-            else
-                original = new Bitmap(image);
-            
-           
-                      
             if (Configuration.ServerSettings.ResampleImages)
             {
                 // This might not be the best way...no differing here...
@@ -117,7 +107,7 @@ namespace GopherServer.Core.Helpers
 
         public static Size ResizeKeepAspect(Size src, int maxWidth, int maxHeight)
         {
-            decimal rnd = Math.Min(maxWidth / (decimal)src.Width, maxHeight / (decimal)src.Height);
+            var rnd = Math.Min(maxWidth / (decimal)src.Width, maxHeight / (decimal)src.Height);
             return new Size((int)Math.Round(src.Width * rnd), (int)Math.Round(src.Height * rnd));
         }
     }

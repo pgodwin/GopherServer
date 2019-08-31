@@ -1,12 +1,7 @@
-﻿using GopherServer.Core.Results;
-using GopherServer.Core.Helpers;
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using HtmlAgilityPack;
 using GopherServer.Core.Models;
 
 namespace GopherServer.Core.Helpers
@@ -18,36 +13,27 @@ namespace GopherServer.Core.Helpers
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static string CleanHtml(this string text)
-        {
-            return WebUtility.HtmlDecode(text);
-        }
+        public static string CleanHtml(this string text) => WebUtility.HtmlDecode(text);
 
         /// <summary>
         /// Converts HTML into text
         /// </summary>
         /// <param name="html"></param>
         /// <returns></returns>
-        public static string HtmlToText(this string html)
-        {
+        public static string HtmlToText(this string html) => new HtmlToText().ConvertHtml(html);
             //var htmlDoc = new HtmlDocument();
             //htmlDoc.LoadHtml(html);
             //return htmlDoc.DocumentNode.InnerText;
-
-            var htmlConvert = new HtmlToText();
-            return htmlConvert.ConvertHtml(html);
-
-        }
+        
+        public static string GetTextFromXPath(this HtmlNode node, string xPath) => node.SelectSingleNode(xPath).InnerText;
+        public static string GetUrlFromXPath(this HtmlNode node, string xPath) => node.SelectSingleNode(xPath).Attributes["href"].Value;
 
         /// <summary>
         /// Converst the specified HTML in to a list of directory items
         /// </summary>
         /// <param name="html"></param>
         /// <returns></returns>
-        public static List<DirectoryItem> ToDirectoryItems(this string html, 
-            string urlSelector = "URL:", 
-            string proxySelector = "PROXY:", 
-            string gifSelector = "GIF:")
+        public static List<DirectoryItem> ToDirectoryItems(this string html, string urlSelector = "URL:", string proxySelector = "PROXY:", string gifSelector = "GIF:")
         {
             // We're going to use the HTML agility pack to parse out the HTML into info
             var htmlDoc = new HtmlDocument();
@@ -63,10 +49,7 @@ namespace GopherServer.Core.Helpers
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        private static List<DirectoryItem> ToDirectoryItems(this HtmlNode node,
-            string urlSelector = "URL:", 
-            string proxySelector = "PROXY:", 
-            string gifSelector = "GIF:")
+        private static List<DirectoryItem> ToDirectoryItems(this HtmlNode node, string urlSelector = "URL:", string proxySelector = "PROXY:", string gifSelector = "GIF:")
         {
             var items = new List<DirectoryItem>();
 
@@ -108,20 +91,8 @@ namespace GopherServer.Core.Helpers
             {
                 items.AddRange(node.ChildNodes.SelectMany(n=>n.ToDirectoryItems(urlSelector, proxySelector, gifSelector)));
             }
+
             return items;
         }
-
-        public static string GetTextFromXPath(this HtmlNode node, string xPath)
-        {
-            return node.SelectSingleNode(xPath).InnerText;
-        } 
-
-        public static string GetUrlFromXPath(this HtmlNode node, string xPath)
-        {
-            return node.SelectSingleNode(xPath).Attributes["href"].Value;
-        }
-
-    }
-
-    
+    }    
 }

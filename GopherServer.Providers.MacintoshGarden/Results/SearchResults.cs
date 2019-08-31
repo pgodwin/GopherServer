@@ -1,11 +1,6 @@
 ﻿using GopherServer.Core.Helpers;
 using GopherServer.Core.Models;
 using GopherServer.Core.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GopherServer.Providers.MacintoshGarden.Results
 {
@@ -31,8 +26,6 @@ namespace GopherServer.Providers.MacintoshGarden.Results
                 this.Items.Add(new DirectoryItem("Previous Page", "/search/" + results.PreviousPageLink));
             if (!string.IsNullOrEmpty(results.NextPageLink))
                 this.Items.Add(new DirectoryItem("Next Page", "/search/" + results.NextPageLink));
-            
         }
-
     }
 }

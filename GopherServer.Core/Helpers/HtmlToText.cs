@@ -1,10 +1,5 @@
-﻿using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using HtmlAgilityPack;
 
 namespace GopherServer.Core.Helpers
 {
@@ -23,6 +18,7 @@ namespace GopherServer.Core.Helpers
             StringWriter sw = new StringWriter();
             ConvertTo(doc.DocumentNode, sw);
             sw.Flush();
+            
             return sw.ToString();
         }
 
@@ -34,6 +30,7 @@ namespace GopherServer.Core.Helpers
             StringWriter sw = new StringWriter();
             ConvertTo(doc.DocumentNode, sw);
             sw.Flush();
+
             return sw.ToString();
         }
 

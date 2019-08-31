@@ -1,10 +1,6 @@
-﻿using GopherServer.Core.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using GopherServer.Core.Results;
 
 namespace GopherServer.Core.Routes
 {
@@ -26,31 +22,16 @@ namespace GopherServer.Core.Routes
             this.Name = name;
             this.RegexString = pattern;
             this.Action = action;
-
             this.BuildRegex(pattern);
         }
 
-        internal void BuildRegex(string pattern)
-        {
-            this.Regex = new Regex(pattern);
-        }
-
         internal Regex Regex { get; set; }
-
         public string Name { get; set; }
-
         public string RegexString { get; set; }
-
-        public bool IsMatch(string selector)
-        {
-            return Regex.IsMatch(selector);
-        }
-
         public Func<BaseResult> Action { get; set; }
 
-        public virtual BaseResult Execute(string selector)
-        {
-            return Action();
-        }
+        internal void BuildRegex(string pattern) => this.Regex = new Regex(pattern);
+        public bool IsMatch(string selector) => Regex.IsMatch(selector);
+        public virtual BaseResult Execute(string selector) => Action();
     }
 }

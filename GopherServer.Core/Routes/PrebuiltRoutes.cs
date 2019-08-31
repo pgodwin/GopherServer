@@ -1,9 +1,4 @@
 ﻿using GopherServer.Core.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GopherServer.Core.Routes
 {
@@ -17,24 +12,12 @@ namespace GopherServer.Core.Routes
         /// </summary>
         /// <param name="selector"></param>
         /// <returns></returns>
-        public static TypedRoute<string> UrlResult()
-        {
-            return new TypedRoute<string>("Url", @"URL:(.+)", (url)=> { return new UrlResult(url); });
-        }
+        public static TypedRoute<string> UrlResult() => new TypedRoute<string>("Url", @"URL:(.+)", url => new UrlResult(url));
 
-        public static TypedRoute<string> GifRoute()
-        {
-            return new TypedRoute<string>("Gif", @"GIF:(.+)", (url) => { return new GifResult(url); });
-        }
+        public static TypedRoute<string> GifRoute() => new TypedRoute<string>("Gif", @"GIF:(.+)", url => new GifResult(url));
 
-        public static TypedRoute<string> HtmlProxy()
-        {
-            return new TypedRoute<string>("Html", @"HTML:(.+)", (url) => { return new HtmlResult(url); });
-        }
+        public static TypedRoute<string> HtmlProxy() => new TypedRoute<string>("Html", @"HTML:(.+)", url => new HtmlResult(url));
 
-        public static TypedRoute<string> ProxyRoute()
-        {
-            return new TypedRoute<string>("Proxy", @"PROXY:(.+)", (url) => { return new ProxyResult(url); });
-        }
+        public static TypedRoute<string> ProxyRoute() => new TypedRoute<string>("Proxy", @"PROXY:(.+)", url => new ProxyResult(url));
     }
 }

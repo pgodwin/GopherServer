@@ -1,10 +1,5 @@
 ﻿using AngleSharp.Dom;
-using AngleSharp.Dom.Html;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AngleSharp.Html.Dom;
 
 namespace GopherServer.Providers.MacintoshGarden.Extensions
 {
@@ -23,6 +18,7 @@ namespace GopherServer.Providers.MacintoshGarden.Extensions
             var href = element as IHtmlAnchorElement;
             if (href == null)
                 return defaultText;
+
             return href.Href ?? defaultText;
         }
     }

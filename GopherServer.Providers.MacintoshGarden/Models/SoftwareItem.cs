@@ -1,19 +1,30 @@
-﻿using AngleSharp;
-using AngleSharp.Dom;
-using AngleSharp.Dom.Html;
-using AngleSharp.Parser.Html;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AngleSharp;
+using AngleSharp.Html.Dom;
 using GopherServer.Core.Helpers;
 using GopherServer.Providers.MacintoshGarden.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GopherServer.Providers.MacintoshGarden.Models
 {
     public class SoftwareItem
     {
+        public string Title { get; set; }
+        public string Url { get; set; }
+        public string Rating { get; set; }
+        public string Category { get; set; }
+        public string CategoryLink { get; set; }
+        public string YearReleased { get; set; }
+        public string YearReleasedLink { get; set; }
+        public string Author { get; set; }
+        public string AuthorLink { get; set; }
+        public string Publisher { get; set; }
+        public string PublisherLink { get; set; }
+        public string[] Screenshots { get; set; }
+        public string Description { get; set; }
+        public string ManualUrl { get; set; }
+        public DownloadDetails[] Downloads { get; set; }
+
         public SoftwareItem(string url)
         {
             var html = HttpHelpers.GetUrl(url);
@@ -21,19 +32,13 @@ namespace GopherServer.Providers.MacintoshGarden.Models
             this.Parse(url);
         }
 
-        
-
         public void Parse(string url)
-        {
-          
+        { 
             var config = Configuration.Default.WithDefaultLoader();
             using (var doc = BrowsingContext.New(config).OpenAsync(url).Result)
             {
-
-
                 this.Title = doc.QuerySelector("#paper > h1").TextContent.Trim();
                 this.Rating = doc.QuerySelector("#edit-vote-wrapper > div.description > div > span.average-rating > span").TryGetContent("No rating").CleanString();
-
 
                 this.Category = doc.QuerySelector("#paper > div.game-preview > div.descr > table > tbody > tr:nth-child(2) > td:nth-child(2) > ul > li > a").TryGetContent("No Category").CleanString();
                 this.CategoryLink = doc.QuerySelector("#paper > div.game-preview > div.descr > table > tbody > tr:nth-child(2) > td:nth-child(2) > ul > li > a").TryGetHref();
@@ -73,55 +78,10 @@ namespace GopherServer.Providers.MacintoshGarden.Models
                         Os = os,
                         Links = links.Select(l => new DownloadLink() { Text = l.Text, Url = l.Href }).ToArray()
                     });
-
                 }
 
                 this.Downloads = downloads.ToArray();
             }
         }
-
-
-
-        public string Title { get; set; }
-        public string Url { get; set; }
-
-        public string Rating { get; set; }
-
-        public string Category { get; set; }
-        public string CategoryLink { get; set; }
-
-        public string YearReleased { get; set; }
-        public string YearReleasedLink { get; set; }
-
-        public string Author { get; set; }
-        public string AuthorLink { get; set; }
-        public string Publisher { get; set; }
-        public string PublisherLink { get; set; }
-
-
-
-        public string[] Screenshots { get; set; }
-
-        public string Description { get; set; }
-
-        public string ManualUrl { get; set; }
-
-        public DownloadDetails[] Downloads { get; set; }
-    }
-
-    
-    public class DownloadDetails
-    {
-        public string Title { get; set; }
-        public string Size { get; set; }
-        public string Os { get; set; }
-
-        public DownloadLink[] Links { get;set;}
-    }
-
-    public class DownloadLink
-    {
-        public string Text { get; set; }
-        public string Url { get; set; }
     }
 }
