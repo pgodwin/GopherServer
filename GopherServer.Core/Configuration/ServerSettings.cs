@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 
 namespace GopherServer.Core.Configuration
 {
     public static class ServerSettings
     {
         private static ExtensionMappingCollection extensionMappings;
+
+        public static string BoundIP => ConfigurationManager.AppSettings["boundIP"];
+        public static int BoundPort => int.Parse(ConfigurationManager.AppSettings["boundPort"]);
+        public static string ProviderName => ConfigurationManager.AppSettings["providerName"];
+        public static string PublicHostname => ConfigurationManager.AppSettings["publicHostname"];
+        public static int PublicPort => int.Parse(ConfigurationManager.AppSettings["publicPort"]);
+        public static bool ResampleImages => bool.Parse(ConfigurationManager.AppSettings["resampleImages"]);
+        public static bool ResizeImages => bool.Parse(ConfigurationManager.AppSettings["resizeImages"]);
 
         public static ExtensionMappingCollection FileTypeMappings
         {
@@ -26,35 +28,8 @@ namespace GopherServer.Core.Configuration
 
                 extensionMappings = section.ExtensionMappings;
 
-                return extensionMappings;
-                
+                return extensionMappings;                
             }
-        }
-
-        public static string BoundIP
-        {
-            get { return ConfigurationManager.AppSettings["boundIP"]; }
-        }
-
-        public static int BoundPort
-        {
-            get { return int.Parse(ConfigurationManager.AppSettings["boundPort"]); }
-        }
-
-
-        public static string PublicHostname
-        {
-            get { return ConfigurationManager.AppSettings["publicHostname"]; }
-        }
-
-        public static int PublicPort
-        {
-            get { return int.Parse(ConfigurationManager.AppSettings["publicPort"]); }
-        }
-
-        public static bool ResizeImages
-        {
-            get { return bool.Parse(ConfigurationManager.AppSettings["resizeImages"]); }
         }
 
         public static int? MaximumWidth
@@ -79,13 +54,6 @@ namespace GopherServer.Core.Configuration
             }
         }
 
-        public static bool ResampleImages
-        {
-            get { return bool.Parse(ConfigurationManager.AppSettings["resampleImages"]); }
-        }
-
-        
-
         public static int? MaximumBitDepth
         {
             get
@@ -96,15 +64,5 @@ namespace GopherServer.Core.Configuration
                 return null;
             }
         }
-
-
-        public static string ProviderName
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["providerName"];
-            }
-        }
-
     }
 }

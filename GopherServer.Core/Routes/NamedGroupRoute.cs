@@ -1,11 +1,9 @@
-﻿using GopherServer.Core.Results;
-using GopherServer.Core.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using GopherServer.Core.Helpers;
+using GopherServer.Core.Results;
 
 namespace GopherServer.Core.Routes
 {
@@ -16,7 +14,6 @@ namespace GopherServer.Core.Routes
             this.Name = name;
             this.RegexString = pattern;
             this.Delegate = resultMethod;
-
             this.BuildRegex(pattern);
         }
 
@@ -31,12 +28,11 @@ namespace GopherServer.Core.Routes
         {
             var groupValues = new Dictionary<string, string>();
             // Get the groupnames
-            GroupCollection groups = Regex.Match(selector).Groups;
+            var groups = Regex.Match(selector).Groups;
             foreach (var groupName in Regex.GetGroupNames())
                 groupValues.Add(groupName, groups[groupName].Value);
 
             return groupValues;
-
         }
 
         public override BaseResult Execute(string selector)

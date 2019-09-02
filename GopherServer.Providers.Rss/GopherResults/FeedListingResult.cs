@@ -1,11 +1,8 @@
-﻿using GopherServer.Core.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using GopherServer.Core.Models;
 using GopherServer.Core.Results;
 using GopherServer.Core.Rss.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GopherServer.Core.Rss.GopherResults
 {
@@ -14,11 +11,9 @@ namespace GopherServer.Core.Rss.GopherResults
         public FeedListingResult(string nickname, IEnumerable<Feed> feeds) : base()
         {
             this.Items.Add(new DirectoryItem("Feeds for '" + nickname + "'"));
-
             this.Items.Add(new DirectoryItem(""));
             this.Items.Add(new DirectoryItem(ItemType.INDEXSEARCH, "Add Feed", string.Format("/user/{0}/add/", nickname)));
             this.Items.Add(new DirectoryItem("  Enter the URL of the feed when prompted."));
-
             this.Items.Add(new DirectoryItem(""));
 
             if (feeds == null || feeds.Count() == 0)
@@ -28,7 +23,6 @@ namespace GopherServer.Core.Rss.GopherResults
             }
 
             this.Items.Add(new DirectoryItem("Combined View", "/feeds/" + nickname + "/all/"));
-
 
             foreach (var feed in feeds)
             {

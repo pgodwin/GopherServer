@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GopherServer.Core.Results;
-using System.Text.RegularExpressions;
-using GopherServer.Core.Providers;
 using System.Configuration;
+using System.Linq;
+using GopherServer.Core.Providers;
+using GopherServer.Core.Results;
 using GopherServer.Core.Routes;
 
 namespace GopherServer.Core.WpJson
@@ -27,16 +24,16 @@ namespace GopherServer.Core.WpJson
 
         public WordPressProvider(string hostname, int port) : base(hostname, port)
         {
-            this.Hostname = hostname;
-            this.Port = port;
+            Hostname = hostname;
+            Port = port;
         }
 
         public override void Init()
         {
-            this.WordPressUrl = ConfigurationManager.AppSettings[this.GetType().Name + ".Url"];
+            WordPressUrl = ConfigurationManager.AppSettings[GetType().Name + ".Url"];
 
             // TODO Read in Config
-            client = new WordPressClient(this.WordPressUrl);
+            client = new WordPressClient(WordPressUrl);
 
             // Build our route list for teh selector
             routes = new List<Route>()
@@ -55,7 +52,6 @@ namespace GopherServer.Core.WpJson
                 
                 // Search
                 new TypedRoute<string>("Search", @"\/search\/*\t(.+)", client.Search),
-
 
                 // Get Image
                 //new TypedRoute<string>("Gif", @"\/gif\/(.+)", client.GetGif),
@@ -82,7 +78,6 @@ namespace GopherServer.Core.WpJson
         {
             // This is where we read our selectors...
             // it's a shame we can't reuse the route code out of MVC (or can we ?)
-
             try
             {
                 if (string.IsNullOrEmpty(selector) || selector == "1") // some clients seem to use 1
@@ -102,8 +97,6 @@ namespace GopherServer.Core.WpJson
                 Console.WriteLine(ex);
                 return new ErrorResult("Error occurred processing your request.");
             }      
-        }
-
-        
+        }        
     }
 }

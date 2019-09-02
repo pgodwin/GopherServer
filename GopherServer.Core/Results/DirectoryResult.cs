@@ -1,17 +1,14 @@
-﻿using GopherServer.Core.Models;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using GopherServer.Core.Models;
 
 namespace GopherServer.Core.Results
 {
     public class DirectoryResult : BaseResult
     {
-        private List<DirectoryItem> list;
+        public List<DirectoryItem> Items { get; internal set; }
 
         public DirectoryResult()
         {
@@ -24,8 +21,6 @@ namespace GopherServer.Core.Results
             this.Items = list;
             this.ItemType = ItemType.DIRECTORY;
         }
-
-        public List<DirectoryItem> Items { get; internal set; }
 
         public override void WriteResult(Stream stream)
         {
@@ -45,9 +40,6 @@ namespace GopherServer.Core.Results
         /// Returns a the directory listing as a string
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Join("\r\n", this.Items.Select(i => i.ToString()));
-        }
+        public override string ToString() => string.Join("\r\n", this.Items.Select(i => i.ToString()));
     }
 }

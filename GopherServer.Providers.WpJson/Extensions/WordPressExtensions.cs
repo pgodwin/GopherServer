@@ -1,12 +1,6 @@
-﻿using GopherServer.Core.Results;
+﻿using System.Collections.Generic;
+using WordPressRestApiStandard.Models;
 using GopherServer.Core.Helpers;
-using GopherServer.Core.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WordPressRestApi.Models;
 using GopherServer.Core.Models;
 
 namespace GopherServer.Core.WpJson.Extensions
@@ -38,8 +32,6 @@ namespace GopherServer.Core.WpJson.Extensions
             }
 
             return items;
-
         }
-
     }
 }

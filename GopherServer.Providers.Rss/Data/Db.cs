@@ -1,30 +1,24 @@
-﻿using GopherServer.Core.Rss.Syndication;
-using SQLite.Net;
-using SQLiteNetExtensions.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SQLite;
+using SQLiteNetExtensions.Extensions;
+using GopherServer.Core.Rss.Syndication;
 
 namespace GopherServer.Core.Rss.Data
 {
     public class Db
     {
         SQLiteConnection connection;
+
         public Db(string dbPath)
         {
-            var platform = new SQLite.Net.Platform.Generic.SQLitePlatformGeneric();
-            connection = new SQLiteConnection(platform, dbPath);
-
+            connection = new SQLiteConnection(dbPath);
             CreateDb();
         }
 
-      
-
         public void CreateDb()
-        {
-            
+        {            
             connection.CreateTable<User>();
             connection.CreateTable<Feed>();
             connection.CreateTable<FeedCache>();
@@ -36,8 +30,8 @@ namespace GopherServer.Core.Rss.Data
             var user = connection.Table<User>().FirstOrDefault(u => u.NickName == nickname);
             if (user == null)
                 throw new Exception("No user found for nickanme '" + nickname + "'");
-            return user;
 
+            return user;
         }
 
         public Feed GetFeed(int feedId)

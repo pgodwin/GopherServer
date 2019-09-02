@@ -1,16 +1,14 @@
-﻿using GopherServer.Core.Helpers;
+﻿
+using System.Collections.Generic;
+using System.Linq;
+using HtmlAgilityPack;
+using WordPressRestApiStandard;
+using WordPressRestApiStandard.Models;
+using WordPressRestApiStandard.QueryModel;
+using GopherServer.Core.Helpers;
 using GopherServer.Core.Models;
 using GopherServer.Core.Results;
 using GopherServer.Core.WpJson.Extensions;
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WordPressRestApi;
-using WordPressRestApi.Models;
-using WordPressRestApi.QueryModel;
 
 namespace GopherServer.Core.WpJson
 {
@@ -54,7 +52,6 @@ namespace GopherServer.Core.WpJson
         /// <returns></returns>
         public DirectoryResult Search(string q)
         {
-
             var posts = client.GetPosts(new PostsQuery { Search = q, PerPage = 100, OrderBy = OrderBy.title.ToString() }).Result;
             var directory = new DirectoryResult();
 

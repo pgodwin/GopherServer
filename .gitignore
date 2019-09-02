@@ -286,3 +286,8 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+*.db
+*.db-shm
+*.db-wal
+app.config

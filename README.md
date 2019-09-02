@@ -2,7 +2,7 @@
 A Gopher Server implemented in C#.
 
 ## What is in here
- - Simple Socket Server implemented in GopherServer.Server
+ - Simple Socket Server implemented in GopherServer
  - Concept of "Providers' which return a Result for the selector. 
    - Providers only have two methods to implement: `void Init()` and `BaseResult GetResult(string selector);`
  - Models for results, item types, etc and helpers in GopherServer.Core

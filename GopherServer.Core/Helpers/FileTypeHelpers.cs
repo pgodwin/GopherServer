@@ -1,12 +1,8 @@
-﻿using GopherServer.Core.Configuration;
-using GopherServer.Core.Models;
-using GopherServer.Core.Results;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GopherServer.Core.Configuration;
+using GopherServer.Core.Models;
 
 namespace GopherServer.Core.Helpers
 {
@@ -17,7 +13,7 @@ namespace GopherServer.Core.Helpers
             var types = ServerSettings.FileTypeMappings.OfType<ExtensionMappingElement>();
             var extension = Path.GetExtension(filename);
             var fileType = types.FirstOrDefault(f => string.Equals(f.FileExtension, extension, StringComparison.InvariantCultureIgnoreCase));
-            
+
             if (fileType == null)
                 return ItemType.BINARY; // File tends to return asci in Seamonkey at least...
             var gopherType = ItemType.Types.Values.FirstOrDefault(p => p.Name == fileType.GopherType);

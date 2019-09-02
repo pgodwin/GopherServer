@@ -1,12 +1,8 @@
-﻿using GopherServer.Core.Results;
-using GopherServer.Core.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.ServiceModel.Syndication;
-using System.Text;
-using System.Threading.Tasks;
+using GopherServer.Core.Helpers;
 using GopherServer.Core.Models;
+using GopherServer.Core.Results;
 
 namespace GopherServer.Core.Rss.GopherResults
 {
@@ -17,12 +13,8 @@ namespace GopherServer.Core.Rss.GopherResults
             var feed = new Syndication.FeedDetails(xml);
             // Find the item
             var item = feed.Feed.Items.FirstOrDefault(i => i.Id == itemId);
-            string text;
             var content = item.Content as TextSyndicationContent;
-            if (content != null)
-                text = content.Text;
-            else
-                text = item.Summary.Text;
+            var text = content != null ? content.Text : item.Summary.Text;
 
             this.Items.Add(new DirectoryItem(item.Title.Text));
             this.Items.Add(new DirectoryItem("------------"));
@@ -33,10 +25,8 @@ namespace GopherServer.Core.Rss.GopherResults
                 this.Items.Add(new ExternalUrlItem("Read More...", item.Links.First().Uri.ToString()));
 
             this.Items.Add(new DirectoryItem("---"));
-
             this.Items.Add(new DirectoryItem("Return to '" + feed.Title + "'...", string.Format("/feeds/{0}/{1}/", nickname, feedId)));
             this.Items.Add(new DirectoryItem("Return to Feed List...", string.Format("/feeds/{0}/", nickname)));
-
         }
     }
 }

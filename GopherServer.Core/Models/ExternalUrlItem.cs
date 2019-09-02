@@ -1,11 +1,4 @@
-﻿using GopherServer.Core.Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GopherServer.Core.Models
+﻿namespace GopherServer.Core.Models
 {
     public class ExternalUrlItem : DirectoryItem
     {

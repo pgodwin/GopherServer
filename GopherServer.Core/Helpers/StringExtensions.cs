@@ -1,11 +1,7 @@
-﻿using GopherServer.Core.Models;
-using GopherServer.Core.Results;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using GopherServer.Core.Models;
 
 namespace GopherServer.Core.Helpers
 {
@@ -70,7 +66,5 @@ namespace GopherServer.Core.Helpers
         {
             return text.WrapText(cols).Select(l => new DirectoryItem(l)).ToList();
         }
-
-        
     }
 }

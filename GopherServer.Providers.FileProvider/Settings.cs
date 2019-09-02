@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 
 namespace GopherServer.Providers.FileProvider
 {
     public static class Settings
     {
-        public static string RootDirectory
-        {
-            get
-            {
-                return ConfigurationManager.AppSettings["FileProvider.RootDirectory"];
-            }
-        }
+        public static string RootDirectory => ConfigurationManager.AppSettings["FileProvider.RootDirectory"];
     }
 }

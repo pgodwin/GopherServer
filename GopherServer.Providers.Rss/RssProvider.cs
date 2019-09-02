@@ -1,12 +1,10 @@
-﻿using GopherServer.Core.Providers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GopherServer.Core.Providers;
 using GopherServer.Core.Results;
-using GopherServer.Core.Rss.Data;
 using GopherServer.Core.Routes;
+using GopherServer.Core.Rss.Data;
 
 namespace GopherServer.Core.Rss
 {
@@ -16,10 +14,9 @@ namespace GopherServer.Core.Rss
     public class RssProvider : ServerProviderBase
     {
         Db db;
-        public RssProvider(string hostname, int port) : base(hostname, port)
-        {
 
-        }
+        public RssProvider(string hostname, int port) : base(hostname, port)
+        { }
 
         public List<Route> Routes { get; set; }
 
@@ -31,10 +28,7 @@ namespace GopherServer.Core.Rss
             this.Controller = new RssController(db);
             this.Routes = BuildRoutes();
 
-            var feedDownloader = new System.Threading.Timer((e) =>
-            {
-                Syndication.Syndication.UpdateFeeds(db);
-            }, null, 0, (int)TimeSpan.FromMinutes(5).TotalMilliseconds);
+            var feedDownloader = new System.Threading.Timer(e => { Syndication.Syndication.UpdateFeeds(db); }, null, 0, (int)TimeSpan.FromMinutes(5).TotalMilliseconds);
         }
 
         private List<Route> BuildRoutes()
@@ -66,6 +60,7 @@ namespace GopherServer.Core.Rss
                 // Delete User Feed
                 new NamedGroupRoute("DeleteFeed", @"\/user\/(?<nickname>.\w+)\/delete\/(?<feedId>\d+)\/$", new Func<string, int, BaseResult>(this.Controller.DeleteFeed)),
             };
+            
             return routes;
         }
 

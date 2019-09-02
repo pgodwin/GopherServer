@@ -12,9 +12,7 @@ namespace GopherServer.Core.Providers
     public abstract class ServerProviderBase : IServerProvider
     {
         public ServerProviderBase(string hostname, int port)
-        {
-
-        }
+        { }
 
         public abstract void Init();
 

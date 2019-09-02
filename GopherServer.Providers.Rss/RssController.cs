@@ -1,24 +1,17 @@
-﻿using GopherServer.Core.Models;
+﻿using System;
+using System.Collections.Generic;
+using GopherServer.Core.Models;
 using GopherServer.Core.Results;
 using GopherServer.Core.Rss.Data;
 using GopherServer.Core.Rss.GopherResults;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GopherServer.Core.Rss
 {
     public class RssController
     {
-        public RssController(Db db)
-        {
-            this.Db = db;
-        }
-
         public Db Db { get; private set; }
 
+        public RssController(Db db) => this.Db = db;
 
         public FeedListingResult GetUserFeeds(string nickname)
         {
@@ -45,7 +38,7 @@ namespace GopherServer.Core.Rss
                 Db.AddUser(nickname);
                 return GetUserFeeds(nickname);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // User probably already exists
                 return new ErrorResult("Unable to register '" + nickname + '"');
@@ -60,6 +53,7 @@ namespace GopherServer.Core.Rss
                 Syndication.Syndication.UpdateFeed(Db, id);
                 return GetUserFeeds(nickname);
             }
+            
             return new ErrorResult("Invalid Feed");
         }
 

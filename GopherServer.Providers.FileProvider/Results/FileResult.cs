@@ -15,9 +15,6 @@ namespace GopherServer.Providers.FileProvider
             this.baseDirectory = baseDirectory;
         }
 
-        public override void WriteResult(Stream stream)
-        {
-            File.OpenRead(this.path).CopyTo(stream);
-        }
+        public override void WriteResult(Stream stream) => File.OpenRead(this.path).CopyTo(stream);
     }
 }

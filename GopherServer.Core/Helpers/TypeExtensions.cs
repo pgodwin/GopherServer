@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GopherServer.Core.Helpers
 {
@@ -14,14 +10,8 @@ namespace GopherServer.Core.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static T ToType<T>(this string value)
-        {
-            return (T)Convert.ChangeType(value, typeof(T));
-        }
+        public static T ToType<T>(this string value) => (T)Convert.ChangeType(value, typeof(T));
 
-        public static object ToType(this string value, Type type)
-        {
-            return Convert.ChangeType(value, type);
-        }
+        public static object ToType(this string value, Type type) => Convert.ChangeType(value, type);
     }
 }
